@@ -33,7 +33,7 @@
 									<use xlink:href="#stroked-checkmark"></use>
 								</svg>Đã thêm thành công<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
 							</div>
-							<a href="addproduct.html" class="btn btn-primary">Thêm sản phẩm</a>
+							<a href="/admin/product/add" class="btn btn-primary">Thêm sản phẩm</a>
 							<table class="table table-bordered" style="margin-top:20px;">
 
 								<thead>
@@ -56,7 +56,7 @@
 												<div class="col-md-9">
 													<p><strong>Mã sản phẩm : {{ $row->product_code }}</strong></p>
 													<p>Tên sản phẩm :{{ $row->name }}</p>
-													<p>Danh mục:{{  }}</p>
+													<p>Danh mục:{{ $row->category->name }}</p>
 													<p>size:xl,xxl,</p>
 													<div class="group-color">Màu tuỳ chọn:
 														<div class="product-color" style="background-color: blueviolet;"></div>
@@ -71,7 +71,7 @@
 										<td>
 											<a name="" id="" class="btn btn-success" href="#" role="button">Còn hàng</a>
 										</td>
-										<td>Áo Khoác Nam</td>
+										<td>{{ $row->category->name }}</td>
 										<td>
 											<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
 											<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>

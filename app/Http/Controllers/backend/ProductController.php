@@ -5,7 +5,8 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
 use App\Http\Requests\EditProductRequest;
-use App\model\product;
+use App\models\product;
+use App\models\category;
 use Illuminate\Http\Request;
 
 
@@ -17,7 +18,8 @@ class ProductController extends Controller
     }
 
     public function getAddProduct(){
-        return view('backend.product.addproduct');
+        $data['category'] = category::all();
+        return view('backend.product.addproduct',$data);
     }
     public function postAddProduct(AddProductRequest $r){
         return redirect('/admin/product')->with('thongbao','Đã thêm thành công');

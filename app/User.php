@@ -9,7 +9,11 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    public $table = 'users';
+    public function info(){
+        return $this ->hasOne('App\models\info','user_id','id');
+    }
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

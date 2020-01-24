@@ -52,7 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
     });
     Route::group(['prefix' => 'category'], function () {
         Route::get('', 'backend\CategoryController@getListCategory');
-        Route::get('add', 'backend\CategoryController@getAddCategory');
+        Route::post('', 'backend\CategoryController@postAddCategory');
         Route::get('edit', 'backend\CategoryController@getEditCategory');
     });
 
@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
         Route::get('', 'backend\UserController@getListUser');
         Route::get('add', 'backend\UserController@getAddUser');
         Route::post('add', 'backend\UserController@postAddUser');
-        Route::get('edit', 'backend\UserController@getEditUser');
+        Route::get('edit/{idUser}', 'backend\UserController@getEditUser');
         Route::post('edit', 'backend\UserController@postEditUser');
     });
 });

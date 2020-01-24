@@ -50,7 +50,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('vietpro', 'vietpro'),
             'username' => env('root', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'password' => env('', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
