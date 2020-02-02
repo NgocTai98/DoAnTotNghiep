@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -12,13 +13,13 @@ class LoginController extends Controller
         return view('backend.login');
     }
     public function postLogin(LoginRequest $r){
-        if($r->email=='admin@gmail.com' && $r->password=='123456')
+        if(User::where('email',$r->email)->where('password',$r->password)->count()>0)
         {
             session()->put('email',$r->email);
            return redirect('admin');
         }
         else {
-           return redirect('login')->withInput();
+           return redirect('login')->with('thongbao','Tài khoản hoặc mật khẩu không chính xác !')->withInput();
         }
         
     }

@@ -66,7 +66,7 @@
                                         
                                         <td>
                                             <a href="/admin/user/edit/{{ $row->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-                                            <a href="/admin/user/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                            <a onclick="return delUser('{{ $row->full }}')" href="/admin/user/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -86,5 +86,14 @@
                 </div>
             </div>
             <!--/.row-->
+@section('script')
+	@parent
+	<script>
+		function delUser(name){
+			return confirm('Bạn có muốn xóa thành viên '+name+' không?');
+		}
+	</script>
+
+@endsection
 
 @endsection

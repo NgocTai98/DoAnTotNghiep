@@ -10,4 +10,5 @@ class category extends Model
     public function product(){
         return $this->hasMany('App\models\product','category_id','id');
     }
+    public $timestamps = false;
 }
