@@ -13,7 +13,7 @@ class EditCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class EditCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name"=>"required|unique:category,name"
+        ];
+    }
+    public function messages()
+    {
+        return [
+            "name.required"=>"Tên danh mục không được để trống",
+            'name.unique'=>'Tên danh mục đã tồn tại !'
         ];
     }
 }

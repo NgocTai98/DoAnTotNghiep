@@ -53,7 +53,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
     Route::group(['prefix' => 'category'], function () {
         Route::get('', 'backend\CategoryController@getListCategory');
         Route::post('', 'backend\CategoryController@postAddCategory');
-        Route::get('edit', 'backend\CategoryController@getEditCategory');
+        Route::get('edit/{idCate}', 'backend\CategoryController@getEditCategory');
+        Route::post('edit/{idCate}', 'backend\CategoryController@postEditCategory');
+        Route::get('del/{idCate}', 'backend\CategoryController@delCategory');
     });
 
     Route::group(['prefix' => 'order'], function () {
@@ -71,6 +73,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
         Route::get('add', 'backend\UserController@getAddUser');
         Route::post('add', 'backend\UserController@postAddUser');
         Route::get('edit/{idUser}', 'backend\UserController@getEditUser');
-        Route::post('edit', 'backend\UserController@postEditUser');
+        Route::post('edit/{idUser}', 'backend\UserController@postEditUser');
+        Route::get('del/{idUser}', 'backend\UserController@delUser');
     });
 });
