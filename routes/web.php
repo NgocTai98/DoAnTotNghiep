@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
             Route::post('', 'backend\ProductController@postEditProduct');
 
             Route::get('attr', 'backend\ProductController@getEditAttr');
+            Route::get('detailAttr', 'backend\ProductController@getAttr');
             Route::get('value', 'backend\ProductController@getEditValueAttr');
 
             Route::get('editvariant', 'backend\ProductController@getEditVariant');

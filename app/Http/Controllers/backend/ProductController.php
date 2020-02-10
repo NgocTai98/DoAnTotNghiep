@@ -7,13 +7,14 @@ use App\Http\Requests\AddProductRequest;
 use App\Http\Requests\EditProductRequest;
 use App\models\product;
 use App\models\category;
+use App\models\attribute;
 use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
 {
-    public function getListProduct(){
-        $data['product'] = product::paginate(4);
+    public function getListProduct(){       
+        $data['products'] = product::paginate(4);
         return view('backend.product.listproduct',$data);
     }
 
@@ -33,12 +34,13 @@ class ProductController extends Controller
     }
 
     public function getAttr(){
-        return view('backend.product.attr');
+        $data['attrs'] = attribute::all();
+        return view('backend.product.attr',$data);
     }
     public function getEditAttr(){
         return view('backend.product.editattr');
     }
-    public function getEditValue(){
+    public function getEditValueAttr(){
         return view('backend.product.editvalue');
     }
     public function getAddVariant(){

@@ -39,3 +39,14 @@ function getCategory($cate,$parent,$tab,$idselect){
         }
     }
 }
+
+function attr_values($mang)
+{
+    $result=array();
+    foreach($mang as $value)
+    {
+        $attr=$value->attribute->name;
+        $result[$attr][]=$value->value;
+    }
+    return $result;
+}

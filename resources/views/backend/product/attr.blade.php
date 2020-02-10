@@ -25,38 +25,26 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
+						@foreach ($attrs as $attr)
 						<div class="row magrin-attr">
-								<div class="col-md-2 panel-blue widget-left">
-									<strong class="large">COLOR</strong>
-									<a class="delete-attr" href="#"><i class="fas fa-times"></i></a>
-									<a class="edit-attr" href="#"><i class="fas fa-edit"></i></a>
-								</div>
-								<div class="col-md-10 widget-right boxattr">
-									<div class="text-attr">RED 
+							<div class="col-md-2 panel-blue widget-left">
+							<strong class="large">{{ $attr->name}}</strong>
+								<a class="delete-attr" href="#"><i class="fas fa-times"></i></a>
+								<a class="edit-attr" href="#"><i class="fas fa-edit"></i></a>
+							</div>
+							<div class="col-md-10 widget-right boxattr">
+								@foreach ($attr->values as $value)
+							
+									<div class="text-attr">{{ $value->value }}
 										<a href="#" class="edit-value"><i class="fas fa-edit"></i></a>
 										<a href="#" class="del-value"><i class="fas fa-times"></i></a>
-									</div>
-								
-									<div class="text-attr"><a href="#" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div>
-									
-								</div>		
+									</div>													
+								@endforeach	
+								<div class="text-attr"><a href="#" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div>
+							</div>
 						</div>
-						<div class="row magrin-attr">
-								<div class="col-md-2 panel-blue widget-left">
-									<strong class="large">COLOR</strong>
-									<a class="delete-attr" href="#"><i class="fas fa-times"></i></a>
-									<a class="edit-attr" href="#"><i class="fas fa-edit"></i></a>
-								</div>
-								<div class="col-md-10 widget-right boxattr">
-									<div class="text-attr">RED 
-										<a href="#" class="edit-value"><i class="fas fa-edit"></i></a>
-										<a href="#" class="del-value"><i class="fas fa-times"></i></a>
-									</div>
-								
-									<div class="text-attr"><a href="#" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div>
-									
-								</div>		
-						</div>
+						@endforeach
+					
 						
 						
 				</div>
