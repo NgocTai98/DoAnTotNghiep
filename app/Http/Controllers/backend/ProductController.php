@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddAttrRequest;
 use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\AddValueRequest;
+use App\Http\Requests\EditAttrRequest;
 use App\Http\Requests\EditProductRequest;
+use App\Http\Requests\EditValueRequest;
 use App\models\product;
 use App\models\category;
 use App\models\attribute;
+use App\models\values;
 use Illuminate\Http\Request;
 
 
@@ -20,6 +25,7 @@ class ProductController extends Controller
 
     public function getAddProduct(){
         $data['category'] = category::all();
+        $data['attrs'] = attribute::all();
         return view('backend.product.addproduct',$data);
     }
     public function postAddProduct(AddProductRequest $r){
@@ -37,12 +43,30 @@ class ProductController extends Controller
         $data['attrs'] = attribute::all();
         return view('backend.product.attr',$data);
     }
-    public function getEditAttr(){
-        return view('backend.product.editattr');
+    public function postAddAttr(AddAttrRequest $r){
+       echo $r->attr_name;
     }
-    public function getEditValueAttr(){
-        return view('backend.product.editvalue');
+
+    public function getEditAttr($id){
+        $data['attr'] = attribute::find($id);
+        return view('backend.product.editattr',$data);
     }
+    public function postEditAttr(EditAttrRequest $r, $id){
+       
+    }
+
+
+    public function postAddValue(AddValueRequest $r){
+        
+    }
+    public function getEditValueAttr($id){
+        $data['value'] = values::find($id);
+        return view('backend.product.editvalue',$data);
+    }
+    public function postEditValueAttr(EditValueRequest $r ,$id){
+        
+    }
+
     public function getAddVariant(){
         return view('backend.product.addvariant');
     }

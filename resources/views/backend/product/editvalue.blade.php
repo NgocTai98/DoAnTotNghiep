@@ -20,12 +20,19 @@
 		<div class="panel panel-blue">
 			<div class="panel-heading dark-overlay">Sửa giá trị của tính</div>
 			<div class="panel-body">
+				@if ($errors->has('edit_value'))
+					<div class="alert alert-danger" role="alert">
+					<strong>{{ $errors->first('edit_value') }}</strong>
+					</div>
+				@endif
+				<form action="" method="post">@csrf
 				<div class="form-group">
 				  <label for="">Tên giá trị của thuộc tính</label>
-				  <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+				<input type="text" name="edit_value" id="" class="form-control" value="{{ $value->value }}" placeholder="" aria-describedby="helpId">
 			
 				</div>
 				<div  align="right"><button class="btn btn-success" type="submit">Sửa</button></div>
+			</form>
 			</div>
 		</div>
 										
