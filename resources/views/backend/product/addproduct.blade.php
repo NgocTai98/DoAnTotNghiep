@@ -15,6 +15,7 @@
                 <div class="panel-heading">Thêm sản phẩm</div>
                 <div class="panel-body">
                     <form action="" method="post">@csrf
+                        <form action="" method="post"></form>
                     <div class="row" style="margin-bottom:40px">
                         <div class="col-xs-8">
                             <div class="row">
@@ -74,86 +75,81 @@
                                 <div class="panel-body tabs">
                                     <label>Các thuộc Tính <a href="/admin/product/edit/detailAttr"><span class="glyphicon glyphicon-cog"></span>
                                             Tuỳ chọn</a></label>
+                                        @if ($errors->has('attr_name'))
+                                            <div class="alert alert-danger" role="alert">
+                                            <strong>{{ $errors->first('attr_name') }}</strong>
+                                            </div>
+                                        @endif
                                     <ul class="nav nav-tabs">
-                                        <li class='active'><a href="#tab17" data-toggle="tab">size</a></li>
-                                        <li><a href="#tab18" data-toggle="tab">Màu sắc</a></li>
+                                        
+                                        @php
+                                            $i=0;
+                                        @endphp
+                                        @foreach ($attrs as $attr)
+                                        <li @if($i==0) class='active' @endif><a href="#tab{{$attr->id}}" data-toggle="tab">{{$attr->name}}</a></li>
+                                        @php
+                                            $i=1;
+                                        @endphp
+                                        @endforeach
                                         <li><a href="#tab-add" data-toggle="tab">+</a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane fade  active  in" id="tab17">
+                                       
+                                        @foreach ($attrs as $attr)
+                                        <div class="tab-pane fade @if($i==1) active @endif  in" id="tab{{$attr->id}}">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>S</th>
-                                                        <th>M</th>
-                                                        <th>L</th>
+                                                        @foreach ($attr->values as $item)
+                                                            <th>{{ $item->value }}</th>
+                                                        @endforeach
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][60]"
-                                                                value="60"> </td>
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][61]"
-                                                                value="61"> </td>
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][64]"
-                                                                value="64"> </td>
+                                                        @foreach ($attr->values as $item)
+                                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][60]" value="60"> </td>
+                                                        @endforeach
 
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <hr>
                                             <div class="form-group">
+                                                @if ($errors->has('value_name'))
+                                                    <div class="alert alert-danger" role="alert">
+                                                    <strong>{{ $errors->first('value_name') }}</strong>
+                                                    </div>
+                                                @endif
+                                                <form action="/admin/product/edit/add-value" method="post">@csrf
                                                 <label for="">Thêm biến thể cho thuộc tính</label>
                                                 <input type="hidden" name="id_pro" value="17">
-                                                <input name="var_name" type="text" class="form-control"
+                                                <input name="value_name" type="text" class="form-control"
                                                     aria-describedby="helpId" placeholder="">
                                                 <div> <button name="add_val" type="submit">Thêm</button></div>
+                                                </form>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade  in" id="tab18">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Đỏ</th>
-                                                        <th>đen</th>
-                                                        <th>xám</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[18][62]"
-                                                                value="62"> </td>
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[18][63]"
-                                                                value="63"> </td>
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[18][65]"
-                                                                value="65"> </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <hr>
-                                            <div class="form-group">
-                                                <label for="">Thêm biến thể cho thuộc tính</label>
-                                                <input type="hidden" name="id_pro" value="18">
-                                                <input name="var_name" type="text" class="form-control"
-                                                    aria-describedby="helpId" placeholder="">
-                                                <div> <button name="add_val" type="submit">Thêm</button></div>
-
-                                            </div>
-                                        </div>
+                                        @php
+                                            $i=2;
+                                        @endphp
+                                        @endforeach
+                                        
 
 
-                                        <div class="tab-pane fade" id="tab-add">
-
+                                        <div class="tab-pane fade" id="tab-add">                                            
+                                            <form action="/admin/product/edit/add-attr" method="post">@csrf
                                             <div class="form-group">
                                                 <label for="">Tên thuộc tính mới</label>
-                                                <input type="text" class="form-control" name="pro_name"
+                                                <input type="text" class="form-control" name="attr_name"
                                                     aria-describedby="helpId" placeholder="">
                                             </div>
 
-                                            <button type="submit" name="add_pro" class="btn btn-success"> <span
+                                            <button type="submit" name="pro_name" class="btn btn-success"> <span
                                                     class="glyphicon glyphicon-plus"></span>
                                                 Thêm thuộc tính</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

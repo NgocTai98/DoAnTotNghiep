@@ -42,9 +42,15 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
             Route::get('', 'backend\ProductController@getEditProduct');
             Route::post('', 'backend\ProductController@postEditProduct');
 
-            Route::get('attr', 'backend\ProductController@getEditAttr');
+            // Route::get('attr', 'backend\ProductController@getEditAttr');
+            Route::post('add-attr', 'backend\ProductController@postAddAttr');
             Route::get('detailAttr', 'backend\ProductController@getAttr');
-            Route::get('value', 'backend\ProductController@getEditValueAttr');
+            Route::get('edit-attr/{id}', 'backend\ProductController@getEditAttr');
+            Route::post('edit-attr/{id}', 'backend\ProductController@postEditAttr');
+
+            Route::post('add-value', 'backend\ProductController@postAddValue');
+            Route::get('edit-value/{id}', 'backend\ProductController@getEditValueAttr');
+            Route::post('edit-value/{id}', 'backend\ProductController@postEditValueAttr');
 
             Route::get('editvariant', 'backend\ProductController@getEditVariant');
             Route::get('addvariant', 'backend\ProductController@getAddVariant');

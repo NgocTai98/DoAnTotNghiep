@@ -29,15 +29,15 @@
 						<div class="row magrin-attr">
 							<div class="col-md-2 panel-blue widget-left">
 							<strong class="large">{{ $attr->name}}</strong>
-								<a class="delete-attr" href="#"><i class="fas fa-times"></i></a>
-								<a class="edit-attr" href="#"><i class="fas fa-edit"></i></a>
+								<a class="delete-attr" href="/admin/product/edit/del-attr/{{$attr->id}}"><i class="fas fa-times"></i></a>
+							<a class="edit-attr" href="/admin/product/edit/edit-attr/{{$attr->id}}"><i class="fas fa-edit"></i></a>
 							</div>
 							<div class="col-md-10 widget-right boxattr">
 								@foreach ($attr->values as $value)
 							
 									<div class="text-attr">{{ $value->value }}
-										<a href="#" class="edit-value"><i class="fas fa-edit"></i></a>
-										<a href="#" class="del-value"><i class="fas fa-times"></i></a>
+										<a href="/admin/product/edit/edit-value/{{$value->id}}" class="edit-value"><i class="fas fa-edit"></i></a>
+										<a href="/admin/product/edit/del-value/{{$value->id}}" class="del-value"><i class="fas fa-times"></i></a>
 									</div>													
 								@endforeach	
 								<div class="text-attr"><a href="#" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div>

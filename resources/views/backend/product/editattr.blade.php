@@ -19,13 +19,20 @@
 		<div class="col-md-6">	
 		<div class="panel panel-blue">
 			<div class="panel-heading dark-overlay">Sửa thuộc tính</div>
+			@if ($errors->has('edit_attr'))
+				<div class="alert alert-danger" role="alert">
+				<strong>{{ $errors->first('edit_attr') }}</strong>
+				</div>
+			@endif
 			<div class="panel-body">
+				<form  method="post">@csrf
 				<div class="form-group">
 				  <label for="">Tên Thuộc tính</label>
-				  <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+				<input type="text" name="edit_attr" id="" class="form-control" value="{{ $attr->name }}" aria-describedby="helpId">
 			
 				</div>
 				<div  align="right"><button class="btn btn-success" type="submit">Sửa</button></div>
+			</form>
 			</div>
 		</div>
 						
