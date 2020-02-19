@@ -11,22 +11,22 @@
     <!--/.row-->
     <div class="row">
         <div class="col-xs-6 col-md-12 col-lg-12">
+            <form action="" method="post">@csrf
             <div class="panel panel-primary">
+                <form action="" method="post"></form>
                 <div class="panel-heading">Thêm sản phẩm</div>
                 <div class="panel-body">
-                    <form action="" method="post">@csrf
-                        <form action="" method="post"></form>
+                   
+                        
                     <div class="row" style="margin-bottom:40px">
+                        
                         <div class="col-xs-8">
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label>Danh mục</label>
                                         <select name="category" class="form-control">
-                                            <option value='1' selected>Nam</option>
-                                            <option value='3'>---|Áo khoác nam</option>
-                                            <option value='2'>Nữ</option>
-                                            <option value='4'>---|Áo khoác nữ</option>
+                                           {{ getCategory($category,0,'',0) }}
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -80,6 +80,11 @@
                                             <strong>{{ $errors->first('attr_name') }}</strong>
                                             </div>
                                         @endif
+                                        @if (session('thongbao'))
+                                            <div class="alert alert-success" role="alert">
+                                            <strong>{{ session('thongbao')}}</strong>
+                                            </div>
+                                        @endif
                                     <ul class="nav nav-tabs">
                                         
                                         @php
@@ -124,7 +129,7 @@
                                                 @endif
                                                 <form action="/admin/product/edit/add-value" method="post">@csrf
                                                 <label for="">Thêm biến thể cho thuộc tính</label>
-                                                <input type="hidden" name="id_pro" value="17">
+                                                <input type="hidden" name="attr_id" value="{{ $attr->id }}">
                                                 <input name="value_name" type="text" class="form-control"
                                                     aria-describedby="helpId" placeholder="">
                                                 <div> <button name="add_val" type="submit">Thêm</button></div>
@@ -177,9 +182,10 @@
                             </div>
                         </div>
                     <div class="clearfix"></div>
-                </form>
+                
                 </div>
             </div>
+            </form>
 
         </div>
     </div>
