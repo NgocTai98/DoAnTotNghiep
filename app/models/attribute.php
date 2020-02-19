@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class attribute extends Model
 {
     protected $table='attribute';
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function values()
     {
