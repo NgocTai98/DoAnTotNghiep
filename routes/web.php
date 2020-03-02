@@ -55,7 +55,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
             Route::get('del-value/{id}', 'backend\ProductController@getDelValueAttr');
 
             Route::get('editvariant', 'backend\ProductController@getEditVariant');
-            Route::get('addvariant', 'backend\ProductController@getAddVariant');
+            Route::get('addvariant/{id}', 'backend\ProductController@getAddVariant');
+            Route::post('addvariant/{id}', 'backend\ProductController@postAddVariant');
+            Route::get('delvariant/{id}', 'backend\ProductController@getDelVariant');
         });
 
     });

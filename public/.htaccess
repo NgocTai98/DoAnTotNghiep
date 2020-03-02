@@ -3,6 +3,7 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    
     RewriteEngine On
 
     # Handle Authorization Header
@@ -19,3 +20,6 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+    php_value upload_max_filesize 200M 
+    php_value post_max_size 200M 
+    php_value max_execution_time 3000

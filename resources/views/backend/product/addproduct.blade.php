@@ -11,7 +11,7 @@
     <!--/.row-->
     <div class="row">
         <div class="col-xs-6 col-md-12 col-lg-12">
-            <form action="" method="post">@csrf
+            <form action="" method="post" enctype="multipart/form-data">@csrf
             <div class="panel panel-primary">
                 <form action="" method="post"></form>
                 <div class="panel-heading">Thêm sản phẩm</div>
@@ -114,7 +114,7 @@
                                                 <tbody>
                                                     <tr>
                                                         @foreach ($attr->values as $item)
-                                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][60]" value="60"> </td>
+                                                    <td> <input class="form-check-input" type="checkbox" name="attr[{{ $attr->id }}][]" value="{{$item->id}}"> </td>
                                                         @endforeach
 
                                                     </tr>

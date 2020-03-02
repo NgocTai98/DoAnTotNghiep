@@ -13,6 +13,8 @@ use App\models\product;
 use App\models\category;
 use App\models\attribute;
 use App\models\values;
+use App\models\variant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
@@ -29,24 +31,46 @@ class ProductController extends Controller
         return view('backend.product.addproduct',$data);
     }
     public function postAddProduct(AddProductRequest $r){
-        // $pro = new product();
-        // $pro->category_id = $r->category;
-        // $pro->name = $r->product_name;
-        // $pro->product_code = $r->product_code;
-        // $pro->price = $r->product_price;
-        // $pro->state = $r->product_state;
-        // $pro->info = $r->info;
-        // $pro->describe = $r->description;
-        // $pro->info = $r->info;
-        // if ($r->hasFile('product_img')) {
-        //     $file = $r->product_img;
-        //     $fileName = Str::random(9).'.'.$file->getClientOriginalExtension();
-        //     $pro->img = $fileName;
-        //     $file->move('/public/backend/img',$fileName);
-            
-        // }else {
-        //     $pro->img = 'no-img.jpg';
-        // }
+    //    dd($r->all());
+        $pro = new product();
+        $pro->category_id = $r->category;
+        $pro->name = $r->product_name;
+        $pro->product_code = $r->product_code;
+        $pro->price = $r->product_price;
+        $pro->state = $r->product_state;
+        $pro->featured = 1;
+        $pro->describe = $r->description;
+        $pro->info = $r->info;
+        $file = $r->file('product_img');
+
+        // dd($r->file('product_img'));
+        if($file != null)
+        {
+        $file = $r->product_img;
+        $filename= str::random(9).'.'.$file->getClientOriginalExtension();
+        $file->move('backend/img', $filename);
+        $pro->img= $filename;
+        }
+        else {
+            $pro->img='no-img.jpg';
+        }
+        $pro->save();
+
+        $mang = array();
+        foreach ($r->attr as  $value) {
+            foreach ($value as $item) {
+                $mang[] = $item;
+            }
+        }
+        $pro->values()->Attach($mang);
+        $variant = get_combinations($r->attr);
+        foreach ($variant as  $val) {
+            $vari = new variant;
+            $vari->product_id=$pro->id;
+            $vari->save();
+            $vari->values()->Attach($val);
+        }
+        return redirect('/admin/product/edit/addvariant/'.$pro->id);
 
         // return redirect('/admin/product')->with('thongbao','Đã thêm thành công');
     }
@@ -109,8 +133,22 @@ class ProductController extends Controller
         return redirect()->back()->with('thongbao','Đã xóa giá trị thuộc tính thành công');
     }
 
-    public function getAddVariant(){
-        return view('backend.product.addvariant');
+    public function getAddVariant($id){
+        $data['product']=product::find($id);
+        
+        return view('backend.product.addvariant', $data);
+    }
+    public function postAddVariant(Request $r,$id){
+       foreach ($r->variant as $key => $value) {
+           $vari = variant::find($key);
+           $vari->price=$value;
+           $vari->save();
+       }
+       return redirect('/admin/product')->with('thongbao','Đã thêm thành công');
+    }
+    public function getDelVariant($id){
+        variant::destroy($id);
+        return redirect()->back()->with('thongbao','Đã xóa thành công');
     }
     public function getEditVariant(){
         return view('backend.product.editvariant');
