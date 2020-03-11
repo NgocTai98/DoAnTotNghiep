@@ -13,9 +13,14 @@
     <!--/.row-->
     <div class="row">
         <div class="col-xs-6 col-md-12 col-lg-12">
-        <form action="" method="post">@csrf
+        <form action="" method="post" enctype="multipart/form-data">@csrf
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Sửa sản phẩm Áo khoác nam đẹp (AN01)</div>
+                    <div class="panel-heading">Sửa sản phẩm {{$product->name}} ({{$product->product_code}})</div>
+                    @if (session('thongbao'))
+                        <div class="alert alert-success" role="alert">
+                        <strong>{{session('thongbao')}}</strong>
+                        </div>
+                    @endif
                     <div class="panel-body">
                         <div class="row" style="margin-bottom:40px">
                             <div class="col-xs-8">
@@ -24,38 +29,42 @@
                                         <div class="form-group">
                                             <label>Danh mục</label>
                                             <select name="category" class="form-control">
-                                                <option value='1'>Nam</option>
-                                                <option value='3' selected>---|Áo khoác nam</option>
-                                                <option value='2'>Nữ</option>
-                                                <option value='4'>---|Áo khoác nữ</option>
+                                               {{ getCategory($category,0,'',$product->id) }}
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Mã sản phẩm</label>
                                             <input type="text" name="product_code" class="form-control"
-                                                value="AN01">
+                                            value="{{$product->product_code}}">
                                                 {{ showErrors($errors,'product_code') }}
                                         </div>
                                         <div class="form-group">
                                             <label>Tên sản phẩm</label>
                                             <input type="text" name="product_name" class="form-control"
-                                                value="Áo khoác nam đẹp">
+                                                value="{{$product->name}}">
                                                 {{ showErrors($errors,'product_name') }}
                                         </div>
                                         <div class="form-group">
-                                            <label>Giá sản phẩm (Giá chung)</label> <a href="admin/product/edit-variant/1"><span
+                                        <label>Giá sản phẩm (Giá chung)</label> <a href="/admin/product/edit/editvariant/{{$product->id}}"><span
                                                     class="glyphicon glyphicon-chevron-right"></span>
                                                 Giá theo biến thể</a>
                                             <input type="number" name="product_price" class="form-control"
-                                                value="150000">
+                                                value="{{$product->price}}">
                                                 {{ showErrors($errors,'product_price') }}
                                         </div>
 
                                         <div class="form-group">
                                             <label>Trạng thái</label>
                                             <select required name="product_state" class="form-control">
+                                                @if ($product->state == 1)
                                                 <option selected value="1">Còn hàng</option>
                                                 <option value="0">Hết hàng</option>
+                                                @else
+                                                <option  value="1">Còn hàng</option>
+                                                <option selected value="0">Hết hàng</option>
+                                                @endif
+                                                
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -64,13 +73,13 @@
                                             <label>Ảnh sản phẩm</label>
                                             <input id="img" type="file" name="product_img" class="form-control hidden"
                                                 onchange="changeImg(this)">
-                                            <img id="avatar" class="thumbnail" width="100%" height="350px" src="img/ao-khoac.jpg">
+                                            <img id="avatar" class="thumbnail" width="100%" height="350px" src="img/{{$product->img}}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Thông tin</label>
-                                    <textarea name="info" style="width: 100%;height: 100px;">thông tin</textarea>
+                                    <textarea name="info" style="width: 100%;height: 100px;">{{$product->info}}</textarea>
                                     {{ showErrors($errors,'info') }}
                                 </div>
          
@@ -80,60 +89,59 @@
 
             <div class="panel panel-default">
                 <div class="panel-body tabs">
-                    <label>Các thuộc Tính</label>
+                   
+                        @if ($errors->has('attr_name'))
+                            <div class="alert alert-danger" role="alert">
+                            <strong>{{ $errors->first('attr_name') }}</strong>
+                            </div>
+                        @endif
+                       
                     <ul class="nav nav-tabs">
-                        <li class='active'><a href="#tab17" data-toggle="tab">size</a></li>
-                        <li><a href="#tab18" data-toggle="tab">Màu sắc</a></li>
+                        
+                        @php
+                            $i=0;
+                        @endphp
+                        @foreach ($attrs as $attr)
+                        <li @if($i==0) class='active' @endif><a href="#tab{{$attr->id}}" data-toggle="tab">{{$attr->name}}</a></li>
+                        @php
+                            $i=1;
+                        @endphp
+                        @endforeach
+                        
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade  active  in" id="tab17">
+                       
+                        @foreach ($attrs as $attr)
+                        <div class="tab-pane fade @if($i==1) active @endif  in" id="tab{{$attr->id}}">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>S</th>
-                                        <th>M</th>
-                                        <th>L</th>
+                                        @foreach ($attr->values as $item)
+                                            <th>{{ $item->value }}</th>
+                                        @endforeach
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][60]"
-                                                value="60"> </td>
-                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][61]"
-                                                value="61" checked> </td>
-                                        <td> <input class="form-check-input" type="checkbox" name="attr[17][64]"
-                                                value="64" checked> </td>
+                                        @foreach ($attr->values as $item)
+                                    <td> <input @if(check_value($product, $item->id)) checked @endif class="form-check-input" type="checkbox" name="attr[{{ $attr->id }}][]" value="{{$item->id}}"> </td>
+                                        @endforeach
+
                                     </tr>
                                 </tbody>
                             </table>
                             <hr>
+                            
                         </div>
-
-                        <div class="tab-pane fade  in" id="tab18">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Đỏ</th>
-                                        <th>đen</th>
-                                        <th>xám</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> <input class="form-check-input" type="checkbox" name="attr[18][62]"
-                                                value="62"> </td>
-                                        <td> <input class="form-check-input" type="checkbox" name="attr[18][63]"
-                                                value="63" checked> </td>
-                                        <td> <input class="form-check-input" type="checkbox" name="attr[18][65]"
-                                                value="65"> </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <hr>
-                        </div>
+                        @php
+                            $i=2;
+                        @endphp
+                        @endforeach
+                        
 
 
-
+                      
                     </div>
                 </div>
             </div>
@@ -153,7 +161,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Miêu tả</label>
-                        <textarea id="editor" name="description" style="width: 100%;height: 100px;"></textarea>
+                        <textarea id="editor" name="description" style="width: 100%;height: 100px;">{{$product->describe}}</textarea>
                         {{ showErrors($errors,'description') }}
                     </div>
 
