@@ -18,7 +18,7 @@ Route::get('contact', 'frontend\HomeController@getContact');
 Route::get('about', 'frontend\HomeController@getAbout');
 Route::group(['prefix' => 'product'], function () {
     Route::get('', 'frontend\ProductController@getShop');
-    Route::get('detail', 'frontend\ProductController@getDetail');
+    Route::get('detail/{id}', 'frontend\ProductController@getDetail');
 });
 Route::group(['prefix' => 'cart'], function () {
     Route::get('', 'frontend\CartController@getCart');
@@ -39,8 +39,9 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
         Route::post('add', 'backend\ProductController@postAddProduct');
         
         Route::group(['prefix' => 'edit'], function () {
-            Route::get('', 'backend\ProductController@getEditProduct');
-            Route::post('', 'backend\ProductController@postEditProduct');
+            Route::get('/{id}', 'backend\ProductController@getEditProduct');
+            Route::post('/{id}', 'backend\ProductController@postEditProduct');
+            Route::get('/delete/{id}', 'backend\ProductController@delProduct');
 
             // Route::get('attr', 'backend\ProductController@getEditAttr');
             Route::post('add-attr', 'backend\ProductController@postAddAttr');
@@ -54,7 +55,8 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
             Route::post('edit-value/{id}', 'backend\ProductController@postEditValueAttr');
             Route::get('del-value/{id}', 'backend\ProductController@getDelValueAttr');
 
-            Route::get('editvariant', 'backend\ProductController@getEditVariant');
+            Route::get('editvariant/{id}', 'backend\ProductController@getEditVariant');
+            Route::post('editvariant/{id}', 'backend\ProductController@postEditVariant');
             Route::get('addvariant/{id}', 'backend\ProductController@getAddVariant');
             Route::post('addvariant/{id}', 'backend\ProductController@postAddVariant');
             Route::get('delvariant/{id}', 'backend\ProductController@getDelVariant');
