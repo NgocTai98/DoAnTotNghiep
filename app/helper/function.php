@@ -73,3 +73,19 @@ function check_value($product, $value_check) {
     }
     return false;
 }
+
+function getPrice($product, $array){
+    foreach ($product->variant as $row) {
+        $mang = array();
+        foreach ($row->values as $value) {
+           $mang[] = $value->value;
+        }
+        if (array_diff($mang,$array) == NULL) {
+            if ($row->price == 0) {
+                return $product->price;
+            }
+            return $row->price;
+        }
+    }
+    return $product->price;
+}

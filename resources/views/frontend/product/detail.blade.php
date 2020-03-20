@@ -10,14 +10,14 @@
 					<div class="row">
 						<div class="col-md-5">
 							<div class="product-entry">
-								<div class="product-img" style="background-image: url(images/{{ $product->img }});">
+								<div class="product-img" style="background-image: url(../backend/img/{{ $product->img }});">
 
 								</div>
 
 							</div>
 						</div>
 						<div class="col-md-7">
-							<form action="product/AddCart" method="post">
+							<form action="/cart/add-cart" method="get">
 
 								<div class="desc">
 									<h3>{{ $product->name }}</h3>
@@ -43,9 +43,9 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>{{ $key }}:</label>
-												<select class="form-control " name="attr[size]" id="">
+												<select class="form-control " name="attr[{{ $key }}]" id="">
 													@foreach ($value as $item)
-													<option value="M"> {{$item}}</option>
+													<option value="{{$item}}"> {{$item}}</option>
 													@endforeach
 												
 												</select>
@@ -73,7 +73,7 @@
 											</div>
 										</div>
 									</div>
-									<input type="hidden" name="id_product" value="1">
+									<input type="hidden" name="id_product" value="{{$product->id}}">
 									<p><button class="btn btn-primary btn-addtocart" type="submit"> Thêm vào giỏ hàng</button></p>
 								</div>
 							</form>

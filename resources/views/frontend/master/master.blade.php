@@ -82,7 +82,7 @@
 	<script src="js/main.js"></script>
 	@show
 	@yield('script_detail')
-
+	@yield('script_cart')
 </body>
 
 </html>
