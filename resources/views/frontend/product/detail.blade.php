@@ -17,7 +17,7 @@
 							</div>
 						</div>
 						<div class="col-md-7">
-							<form action="/cart/add-cart" method="get">
+							<form action="/cart/add" method="get">
 
 								<div class="desc">
 									<h3>{{ $product->name }}</h3>
