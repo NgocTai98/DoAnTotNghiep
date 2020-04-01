@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckoutRequest;
 use App\models\attr;
 use App\models\customer;
 use App\models\order;
 use App\models\product;
 use Illuminate\Http\Request;
+use App\Mail\OrderMail;
 
+use Illuminate\Support\Facades\Mail;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -41,7 +44,7 @@ class CartController extends Controller
         $data['total'] = Cart::total(0,'',',');
         return view('frontend.cart.checkout', $data);
     }
-    public function postCheckout(Request $r){
+    public function postCheckout(CheckoutRequest $r){
      $customer = new customer();
      $customer->full_name = $r->name;
      $customer->address = $r->address;
@@ -68,12 +71,27 @@ class CartController extends Controller
             $attr->save();
         }       
      }
-     Cart::destroy();
+
+     //sendmail
+   $data = array(
+       'email' => $r->email,
+       'name' =>$r->name,
+       'address' => $r->address,
+       'phone' =>$r->phone, 
+       'product' => Cart::content(),
+       'total' => Cart::total(0,'','')
+   );
+   Mail::to($r->email)->send(new OrderMail($data));
+    //  Cart::destroy();
      return redirect('/cart/complete/'.$customer->id);
      
     }
     public function getComplete($id){
         $data['customer'] = customer::find($id);
         return view('frontend.cart.complete', $data);
+    }
+
+    public function email(){
+        return view('frontend.email');
     }
 }

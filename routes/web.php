@@ -22,13 +22,14 @@ Route::group(['prefix' => 'product'], function () {
 });
 Route::group(['prefix' => 'cart'], function () {
 
-    Route::get('add-cart', 'frontend\CartController@getAddCart');
+    Route::get('add', 'frontend\CartController@getAddCart');
     Route::get('del-cart/{id}', 'frontend\CartController@getDelCart');
     Route::get('update-cart/{rowId}/{qty}', 'frontend\CartController@getUpdateCart');
     Route::get('', 'frontend\CartController@getCart');
     Route::get('checkout', 'frontend\CartController@getCheckout');
     Route::post('checkout', 'frontend\CartController@postCheckout');
     Route::get('complete/{id}', 'frontend\CartController@getComplete');
+    Route::get('email', 'frontend\CartController@email');
 });
 Route::get('login', 'backend\LoginController@getLogin')->middleware('checkLogout');
 Route::post('login', 'backend\LoginController@postLogin');

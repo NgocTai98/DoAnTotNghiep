@@ -85,18 +85,18 @@
 			<div class="col-md-3 text-center">
 				<div class="product-entry">
 					<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
-
+{{-- 
 						<div class="cart">
 							<p>
-								<span class="addtocart"><a href="/cart/{{ $row->id }}"><i class="icon-shopping-cart"></i></a></span>
+								<span class="addtocart"><a href="/cart/add?id_product={{ $row->id }}"><i class="icon-shopping-cart"></i></a></span>
 								<span><a href="/product/detail/{{ $row->id }}"><i class="icon-eye"></i></a></span>
 
 
 							</p>
-						</div>
+						</div> --}}
 					</div>
 					<div class="desc">
-						<h3><a href="/product">{{ $row->name }}</a></h3>
+						<h3><a href="/product/detail/{{ $row->id }}">{{ $row->name }}</a></h3>
 						<p class="price"><span> {{ number_format($row->price) }} đ</span> </p>
 					</div>
 				</div>
@@ -120,17 +120,17 @@
 			<div class="product-entry">
 				<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
 
-					<div class="cart">
+					{{-- <div class="cart">
 						<p>
-							<span class="addtocart"><a href="/cart/{{ $row->id }}"><i class="icon-shopping-cart"></i></a></span>
+							<span class="addtocart"><a href="/cart/add?id_product={{ $row->id }}"><i class="icon-shopping-cart"></i></a></span>
 							<span><a href="/product/detail/{{ $row->id }}"><i class="icon-eye"></i></a></span>
 
 
 						</p>
-					</div>
+					</div> --}}
 				</div>
 				<div class="desc">
-					<h3><a href="/product">{{ $row->name }}</a></h3>
+					<h3><a href="/product/detail/{{ $row->id }}">{{ $row->name }}</a></h3>
 					<p class="price"><span>{{ number_format($row->price) }} đ</span> </p>
 				</div>
 			</div>
