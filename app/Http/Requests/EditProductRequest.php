@@ -24,7 +24,7 @@ class EditProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_code'=>'required',
+            'product_code'=>'required|unique:product,product_code',
             'product_name'=>'required',
             'product_price'=>'required',
             'info'=>'required',
@@ -35,6 +35,7 @@ class EditProductRequest extends FormRequest
     {
         return [
             'product_code.required'=>'Không được để trống mã sản phẩm',
+            'product_code.unique'=>'Mã sản phẩm này đã tồn tại',
             'product_name.required'=>'Không được để trống tên sản phẩm',
             'product_price.required'=>'Không được để trống giá sản phẩm',
             'info.required'=>'Không được để trống thông tin sản phẩm',

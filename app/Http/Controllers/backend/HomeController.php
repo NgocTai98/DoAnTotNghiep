@@ -19,7 +19,7 @@ class HomeController extends Controller
         }
         $data['monthjs']=$monthjs;
         $data['numberjs']=$numberjs;
-        $data['order']=customer::where('state',1)->count();
+        $data['order']=customer::where('state',1)->whereMonth('updated_at',$month_n)->whereYear('updated_at', $year_n)->count();
          return view('backend.index',$data);
     }
     

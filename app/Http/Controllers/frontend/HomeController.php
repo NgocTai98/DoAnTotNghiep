@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\sendMailRequest;
+use App\models\adv;
 use App\models\product;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -19,5 +22,12 @@ class HomeController extends Controller
     }
     public function getAbout(){
         return view('frontend.about');
+    }
+    function sendMail(sendMailRequest $r){
+      
+       $adv = new adv();
+       $adv->email = $r->email;
+       $adv->save();
+       return redirect()->back()->with('thongbao', 'Đã đăng ký thành công');       
     }
 }

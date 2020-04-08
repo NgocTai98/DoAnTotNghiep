@@ -21,6 +21,9 @@
 					<div class="bootstrap-table">
 						<div class="table-responsive">
 							<a href="/admin/order" class="btn btn-warning"><span class="glyphicon glyphicon-gift"></span>Đơn Chưa xử lý</a>
+							<a href="/admin/excel" class="btn btn-success">
+								<i class="fa fa-download"></i> Xuất file Excel
+								</a>
 							<table class="table table-bordered" style="margin-top:20px;">				
 								<thead>
 									<tr class="bg-primary">
