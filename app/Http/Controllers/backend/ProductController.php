@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddAttrRequest;
 use App\Http\Requests\AddProductRequest;
 use App\Http\Requests\AddValueRequest;
-use App\Http\Requests\EditAttrRequest;
-use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\EditValueRequest;
+use App\Http\Requests\EditProductRequest;
+use App\Http\Requests\EditAttrRequest;
+
 use App\models\product;
 use App\models\category;
 use App\models\attribute;
@@ -31,7 +32,7 @@ class ProductController extends Controller
         return view('backend.product.addproduct',$data);
     }
     public function postAddProduct(AddProductRequest $r){
-    //    dd($r->all());
+    
         $pro = new product();
         $pro->category_id = $r->category;
         $pro->name = $r->product_name;

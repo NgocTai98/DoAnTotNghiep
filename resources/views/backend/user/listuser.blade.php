@@ -46,6 +46,9 @@
                                         <th>Address</th>
                                         <th>Phone</th>
                                         <th>Level</th>
+                                        {{-- @if (session('level')==2)
+                                            <th width='18%'>Tùy chọn</th>                                            
+                                        @endif --}}
                                         <th width='18%'>Tùy chọn</th>
                                     </tr>
                                 </thead>
@@ -61,13 +64,20 @@
                                         @if ($row->level == 1)
                                         <td>admin</td>
                                         @else
-                                        <td>member</td>
+                                        <td>user</td>
                                         @endif
                                         
+                                        {{-- @if (session('level')==2)
+                                            <td>
+                                                <a href="/admin/user/edit/{{ $row->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+                                                <a onclick="return delUser('{{ $row->full }}')" href="/admin/user/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                            </td>
+                                        @endif --}}
                                         <td>
                                             <a href="/admin/user/edit/{{ $row->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
                                             <a onclick="return delUser('{{ $row->full }}')" href="/admin/user/del/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
                                         </td>
+                                        
                                     </tr>
                                     @endforeach
                                     

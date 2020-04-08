@@ -73,16 +73,17 @@ class CartController extends Controller
      }
 
      //sendmail
-   $data = array(
-       'email' => $r->email,
-       'name' =>$r->name,
-       'address' => $r->address,
-       'phone' =>$r->phone, 
-       'product' => Cart::content(),
-       'total' => Cart::total(0,'','')
-   );
-   Mail::to($r->email)->send(new OrderMail($data));
-    //  Cart::destroy();
+        $data = array(
+            'email' => $r->email,
+            'name' =>$r->name,
+            'address' => $r->address,
+            'phone' =>$r->phone, 
+            'product' => Cart::content(),
+            'total' => Cart::total(0,'','')
+        );
+        Mail::to($r->email)->send(new OrderMail($data));
+        
+     Cart::destroy();
      return redirect('/cart/complete/'.$customer->id);
      
     }

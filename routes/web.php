@@ -16,6 +16,7 @@ use Illuminate\Routing\RouteGroup;
 Route::get('', 'frontend\HomeController@getIndex');
 Route::get('contact', 'frontend\HomeController@getContact');
 Route::get('about', 'frontend\HomeController@getAbout');
+Route::post('sendmail', 'frontend\HomeController@sendMail');
 Route::group(['prefix' => 'product'], function () {
     Route::get('', 'frontend\ProductController@getShop');
     Route::get('detail/{id}', 'frontend\ProductController@getDetail');
@@ -37,7 +38,10 @@ Route::post('login', 'backend\LoginController@postLogin');
 Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
     Route::get('', 'backend\HomeController@getIndex');
     Route::get('logout', 'backend\LoginController@getLogout');
-    
+
+    Route::get('excel', 'backend\ExcelController@export');
+    Route::get('adv', 'backend\AdvController@Adv');
+    Route::post('adv', 'backend\AdvController@postAdv');
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('', 'backend\ProductController@getListProduct');

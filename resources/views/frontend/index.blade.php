@@ -84,16 +84,9 @@
 			@foreach ($product_fe as $row)
 			<div class="col-md-3 text-center">
 				<div class="product-entry">
-					<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
-{{-- 
-						<div class="cart">
-							<p>
-								<span class="addtocart"><a href="/cart/add?id_product={{ $row->id }}"><i class="icon-shopping-cart"></i></a></span>
-								<span><a href="/product/detail/{{ $row->id }}"><i class="icon-eye"></i></a></span>
-
-
-							</p>
-						</div> --}}
+						<a href="/product/detail/{{ $row->id }}">
+						<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
+						</a>
 					</div>
 					<div class="desc">
 						<h3><a href="/product/detail/{{ $row->id }}">{{ $row->name }}</a></h3>

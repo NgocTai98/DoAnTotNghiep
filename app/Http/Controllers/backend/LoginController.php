@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\User;
 use Illuminate\Http\Request;
 
+
 class LoginController extends Controller
 {
     public function getLogin(){
@@ -16,6 +17,8 @@ class LoginController extends Controller
         if(User::where('email',$r->email)->where('password',$r->password)->count()>0)
         {
             session()->put('email',$r->email);
+            // $level = User::where('email',$r->email)->where('password',$r->password)->take(1);
+            // session()->put('level',$level);
            return redirect('admin');
         }
         else {
