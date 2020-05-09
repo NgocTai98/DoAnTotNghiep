@@ -34,18 +34,18 @@
 						<div class="row magrin-attr">
 							<div class="col-md-2 panel-blue widget-left">
 							<strong class="large">{{ $attr->name}}</strong>
-								<a class="delete-attr" onclick="return delAttr()" href="/admin/product/edit/del-attr/{{ $attr->id  }}"><i class="fas fa-times"></i></a>
-							<a class="edit-attr" href="/admin/product/edit/edit-attr/{{$attr->id}}"><i class="fas fa-edit"></i></a>
+								<a class="delete-attr" onclick="return delAttr()" href="/admin/product/del-attr/{{ $attr->id  }}"><i class="fas fa-times"></i></a>
+							<a class="edit-attr" href="/admin/product/edit-attr/{{$attr->id}}"><i class="fas fa-edit"></i></a>
 							</div>
 							<div class="col-md-10 widget-right boxattr">
 								@foreach ($attr->values as $value)
 							
 									<div class="text-attr">{{ $value->value }}
-										<a href="/admin/product/edit/edit-value/{{$value->id}}" class="edit-value"><i class="fas fa-edit"></i></a>
-										<a onclick="return delValueAttr()" href="/admin/product/edit/del-value/{{$value->id}}" class="del-value"><i class="fas fa-times"></i></a>
+										<a href="/admin/product/edit-value/{{$value->id}}" class="edit-value"><i class="fas fa-edit"></i></a>
+										<a onclick="return delValueAttr()" href="/admin/product/del-value/{{$value->id}}" class="del-value"><i class="fas fa-times"></i></a>
 									</div>													
 								@endforeach	
-								<div class="text-attr"><a href="/admin/product/edit/add-value" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div>
+								{{-- <div class="text-attr"><a href="/admin/product/add-value" class="add-value"><i class="fas fa-plus-circle"></i></i></a></div> --}}
 							</div>
 						</div>
 						@endforeach

@@ -39,7 +39,7 @@ class ProductController extends Controller
         $pro->product_code = $r->product_code;
         $pro->price = $r->product_price;
         $pro->state = $r->product_state;
-        $pro->featured = 1;
+        $pro->featured = $r->featured;
         $pro->describe = $r->description;
         $pro->info = $r->info;
         $file = $r->file('product_img');
@@ -71,7 +71,7 @@ class ProductController extends Controller
             $vari->save();
             $vari->values()->Attach($val);
         }
-        return redirect('/admin/product/edit/addvariant/'.$pro->id);
+        return redirect('/admin/product/addvariant/'.$pro->id);
 
         // return redirect('/admin/product')->with('thongbao','Đã thêm thành công');
     }
@@ -82,12 +82,12 @@ class ProductController extends Controller
         $data['attrs'] = attribute::all();
         return view('backend.product.editproduct',$data);
     }
-    public function postEditProduct(EditProductRequest $r, $id){
-        $product = product::find($id);
+    public function postEditProduct(EditProductRequest $r, $id){      
+        $product = product::find($id);        
       $product->product_code=$r->product_code;
       $product->name= $r->product_name;
       $product->price= $r->product_price;
-      $product->featured= 1;
+      $product->featured= $r->featured;
       $product->state= $r->product_state;
       $product->info= $r->info;
       $product->describe= $r->description;
@@ -104,7 +104,7 @@ class ProductController extends Controller
          $product->img= $filename;
          }
      
-      $product->category_id= $r->category;
+      $product->category_id = $r->category;
       $product->save();
 
          

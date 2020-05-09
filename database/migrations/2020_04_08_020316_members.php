@@ -13,9 +13,13 @@ class Members extends Migration
      */
     public function up()
     {
-        Schema::create('adv', function (Blueprint $table) {
+        Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email',50)->unique();            
+            $table->string('email',50)->unique(); 
+            $table->string('password');
+            $table->string('username')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();           
         });
     }
 
@@ -26,6 +30,6 @@ class Members extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adv');
+        Schema::dropIfExists('members');
     }
 }

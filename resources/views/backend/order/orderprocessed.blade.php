@@ -51,6 +51,9 @@
 								</tbody>
 							</table>
 						</div>
+						<div align='right'>
+							{!!$customer->links()!!}
+						</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>

@@ -14,15 +14,13 @@
 								<p class="tag"><span class="new">New</span></p>
 								<div class="cart">
 									<p>
-										<span class="addtocart"><a href="cart.html"><i class="icon-shopping-cart"></i></a></span>
+										{{-- <span class="addtocart"><a href="cart.html"><i class="icon-shopping-cart"></i></a></span> --}}
 										<span><a href="/product/detail/{{ $row->id }}"><i class="icon-eye"></i></a></span>
-
-
 									</p>
 								</div>
 							</div>
 							<div class="desc">
-								<h3><a href="product-detail.html">{{ $row->name }}</a></h3>
+								<h3><a href="/product/detail/{{ $row->id }}">{{ $row->name }}</a></h3>
 								<p class="price"><span>{{number_format( $row->price) }}đ</span></p>
 							</div>
 						</div>
@@ -82,12 +80,13 @@
 										<label for="guests">Từ:</label>
 										<div class="form-field">
 											<i class="icon icon-arrow-down3"></i>
+											<?php $start = Request::get('start'); $end = Request::get('end'); ?>
 											<select name="start" id="people" class="form-control">
-												<option value="100000">100.000 VNĐ</option>
-												<option value="200000">200.000 VNĐ</option>
-												<option value="300000">300.000 VNĐ</option>
-												<option value="500000">500.000 VNĐ</option>
-												<option value="1000000">1.000.000 VNĐ</option>
+												<option value="100000" @if(100000 == $start) selected @endif>100.000 VNĐ</option>
+												<option value="200000" @if(200000 == $start) selected @endif>200.000 VNĐ</option>
+												<option value="300000" @if(300000 == $start) selected @endif>300.000 VNĐ</option>
+												<option value="500000" @if(500000 == $start) selected @endif>500.000 VNĐ</option>
+												<option value="1000000" @if(1000000 == $start) selected @endif>1.000.000 VNĐ</option>
 											</select>
 										</div>
 									</div>
@@ -98,11 +97,11 @@
 										<div class="form-field">
 											<i class="icon icon-arrow-down3"></i>
 											<select name="end" id="people" class="form-control">
-												<option value="2000000">2.000.000 VNĐ</option>
-												<option value="4000000">4.000.000 VNĐ</option>
-												<option value="6000000">6.000.000 VNĐ</option>
-												<option value="8000000">8.000.000 VNĐ</option>
-												<option value="10000000">10.000.000 VNĐ</option>
+												<option value="2000000" @if(2000000 == $end) selected @endif>2.000.000 VNĐ</option>
+												<option value="4000000" @if(4000000 == $end) selected @endif>4.000.000 VNĐ</option>
+												<option value="6000000" @if(6000000 == $end) selected @endif>6.000.000 VNĐ</option>
+												<option value="8000000" @if(8000000 == $end) selected @endif>8.000.000 VNĐ</option>
+												<option value="10000000" @if(10000000 == $end) selected @endif>10.000.000 VNĐ</option>
 											</select>
 										</div>
 									</div>

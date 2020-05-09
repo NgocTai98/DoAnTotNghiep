@@ -24,7 +24,7 @@ class EditProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_code'=>'required|unique:product,product_code',
+            'product_code'=>'required|unique:product,product_code,'.$this->id,
             'product_name'=>'required',
             'product_price'=>'required',
             'info'=>'required',

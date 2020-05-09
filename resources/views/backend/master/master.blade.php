@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
+	
 	<!-- header -->
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
@@ -41,10 +42,12 @@
 			<li><a href="/admin/category"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper" /></svg> Danh Mục</a></li>
 			<li><a href="/admin/product"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg> Sản phẩm</a></li>
 			<li><a href="/admin/order"><svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad" /></svg> Đơn hàng</a></li>
-			<li><a href="/admin/adv"><svg class="glyph stroked notepad "></svg>Quảng cáo</a></li>
+			{{-- <li><a href="/admin/banner"><svg class="glyph stroked open folder"><use xlink:href="#stroked-open-folder"/></svg>Banner</a></li> --}}
+			<li><a href="/admin/adv"><svg class="glyph stroked two messages"><use xlink:href="#stroked-two-messages"/></svg> Quảng cáo</a></li>
 			<li role="presentation" class="divider"></li>
+			@if (auth()->user()->level == 2)
 			<li><a href="/admin/user"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Quản lý thành viên</a></li>
-		
+			@endif
 		</ul>
 
 	</div>

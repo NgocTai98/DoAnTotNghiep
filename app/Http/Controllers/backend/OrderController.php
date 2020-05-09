@@ -27,4 +27,8 @@ class OrderController extends Controller
         $data['customer'] = customer::where('state',1)->orderby('updated_at', 'DESC')->paginate(5);
         return view('backend.order.orderprocessed', $data);
     }
+    public function getDeleteOrder($id){
+        customer::destroy($id);
+        return redirect()->back()->with('thongbao','Đã xóa thành công');
+    }
 }

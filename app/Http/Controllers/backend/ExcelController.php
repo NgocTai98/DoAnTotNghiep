@@ -19,7 +19,7 @@ class ExcelController extends Controller implements FromCollection, WithHeadings
     {
         $month=Carbon::now()->format('m');
        
-        $orders = customer::all()->where('state',1);
+        $orders = customer::where('state',1)->get();
         foreach ($orders as $row) {
             $order[] = array(
                 '0' => $row->id,

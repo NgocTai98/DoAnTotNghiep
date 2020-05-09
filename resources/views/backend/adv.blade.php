@@ -9,5 +9,11 @@
             <button type="submit" class="btn btn-primary" style="margin-top: 10px; float: right">Gửi</button>
         </form>
     </div>
+    <div class="list">
+        <h3 style="color: red">Danh sách email nhận tin ({{ $total }} email)</h3>
+        @foreach ($members as $row)
+            <p style="font-weight: bold">{{ $row->email }}</p>
+        @endforeach
+    </div>
 </div>
 @endsection

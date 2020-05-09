@@ -11,9 +11,14 @@
 |
 */
 use Illuminate\Routing\RouteGroup;
+// use Illuminate\Routing\Route;
 
 //frontend
 Route::get('', 'frontend\HomeController@getIndex');
+Route::get('customer/login', 'frontend\HomeController@getLogin');
+Route::post('customer/login', 'frontend\HomeController@postLogin');
+Route::get('customer/register', 'frontend\HomeController@getRegister');
+Route::post('customer/register', 'frontend\HomeController@postRegister');
 Route::get('contact', 'frontend\HomeController@getContact');
 Route::get('about', 'frontend\HomeController@getAbout');
 Route::post('sendmail', 'frontend\HomeController@sendMail');
@@ -43,6 +48,8 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
     Route::get('adv', 'backend\AdvController@Adv');
     Route::post('adv', 'backend\AdvController@postAdv');
 
+    
+
     Route::group(['prefix' => 'product'], function () {
         Route::get('', 'backend\ProductController@getListProduct');
         Route::get('add', 'backend\ProductController@getAddProduct');
@@ -54,23 +61,24 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
             Route::get('/delete/{id}', 'backend\ProductController@delProduct');
 
             // Route::get('attr', 'backend\ProductController@getEditAttr');
-            Route::post('add-attr', 'backend\ProductController@postAddAttr');
-            Route::get('detailAttr', 'backend\ProductController@getAttr');
-            Route::get('edit-attr/{id}', 'backend\ProductController@getEditAttr');
-            Route::post('edit-attr/{id}', 'backend\ProductController@postEditAttr');
-            Route::get('del-attr/{id}', 'backend\ProductController@getDelAttr');
-
-            Route::post('add-value', 'backend\ProductController@postAddValue');
-            Route::get('edit-value/{id}', 'backend\ProductController@getEditValueAttr');
-            Route::post('edit-value/{id}', 'backend\ProductController@postEditValueAttr');
-            Route::get('del-value/{id}', 'backend\ProductController@getDelValueAttr');
-
-            Route::get('editvariant/{id}', 'backend\ProductController@getEditVariant');
-            Route::post('editvariant/{id}', 'backend\ProductController@postEditVariant');
-            Route::get('addvariant/{id}', 'backend\ProductController@getAddVariant');
-            Route::post('addvariant/{id}', 'backend\ProductController@postAddVariant');
-            Route::get('delvariant/{id}', 'backend\ProductController@getDelVariant');
+            
         });
+        Route::post('add-attr', 'backend\ProductController@postAddAttr');
+        Route::get('detailAttr', 'backend\ProductController@getAttr');
+        Route::get('edit-attr/{id}', 'backend\ProductController@getEditAttr');
+        Route::post('edit-attr/{id}', 'backend\ProductController@postEditAttr');
+        Route::get('del-attr/{id}', 'backend\ProductController@getDelAttr');
+
+        Route::post('add-value', 'backend\ProductController@postAddValue');
+        Route::get('edit-value/{id}', 'backend\ProductController@getEditValueAttr');
+        Route::post('edit-value/{id}', 'backend\ProductController@postEditValueAttr');
+        Route::get('del-value/{id}', 'backend\ProductController@getDelValueAttr');
+
+        Route::get('editvariant/{id}', 'backend\ProductController@getEditVariant');
+        Route::post('editvariant/{id}', 'backend\ProductController@postEditVariant');
+        Route::get('addvariant/{id}', 'backend\ProductController@getAddVariant');
+        Route::post('addvariant/{id}', 'backend\ProductController@postAddVariant');
+        Route::get('delvariant/{id}', 'backend\ProductController@getDelVariant');
 
     });
     Route::group(['prefix' => 'category'], function () {
@@ -84,6 +92,7 @@ Route::group(['prefix' => 'admin', 'middleware'=>'checkLogin'], function () {
     Route::group(['prefix' => 'order'], function () {
         Route::get('', 'backend\OrderController@getOrder');
         Route::get('detail/{id}', 'backend\OrderController@getDetailOrder');
+        Route::get('delete/{id}', 'backend\OrderController@getDeleteOrder');
         Route::get('active/{id}', 'backend\OrderController@activeOrder');
         Route::get('processed', 'backend\OrderController@getOrderProcessed');
     });

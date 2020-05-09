@@ -47,7 +47,7 @@
 										<td>{{ $row->address }}</td>
 										<td>
 											<a href="/admin/order/detail/{{ $row->id }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Xử lý</a>
-
+											<a href="/admin/order/delete/{{ $row->id }}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
 										</td>
 									</tr>
 									@endforeach
@@ -55,6 +55,9 @@
 
 								</tbody>
 							</table>
+						</div>
+						<div align='right'>
+							{!!$customer->links()!!}
 						</div>
 					</div>
 					<div class="clearfix"></div>

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+// use App\models\members;
 use App\models\customer;
+use App\models\members;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -20,6 +24,9 @@ class HomeController extends Controller
         $data['monthjs']=$monthjs;
         $data['numberjs']=$numberjs;
         $data['order']=customer::where('state',1)->whereMonth('updated_at',$month_n)->whereYear('updated_at', $year_n)->count();
+        $data['adv']=members::count();
+        // $data['user'] = Auth::user();
+        
          return view('backend.index',$data);
     }
     

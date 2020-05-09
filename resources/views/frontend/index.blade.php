@@ -2,7 +2,7 @@
 @section('title','Home')
 
 @section('content')
-<div id="colorlib-featured-product">
+{{-- <div id="colorlib-featured-product">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --}}
 
 <div id="colorlib-intro" class="colorlib-intro" style="background-image: url(images/cover-img-1.jpg);"
  data-stellar-background-ratio="0.5">
@@ -84,9 +84,13 @@
 			@foreach ($product_fe as $row)
 			<div class="col-md-3 text-center">
 				<div class="product-entry">
-						<a href="/product/detail/{{ $row->id }}">
-						<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
-						</a>
+					<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
+						<div class="cart">
+							<p>
+								{{-- <span class="addtocart"><a href="/cart/add?id_product={{ $row->id }}"><i class="icon-shopping-cart"></i></a></span> --}}
+								<span><a href="/product/detail/{{ $row->id }}"><i class="icon-eye"></i></a></span>
+							</p>
+						</div>
 					</div>
 					<div class="desc">
 						<h3><a href="/product/detail/{{ $row->id }}">{{ $row->name }}</a></h3>
@@ -110,17 +114,14 @@
 		<div class="row">
 		@foreach ($product_new as $row)
 		<div class="col-md-3 text-center">
-			<div class="product-entry">
+			<div class="product-entry">				
 				<div class="product-img" style="background-image: url(../backend/img/{{ $row->img }});">
-
-					{{-- <div class="cart">
+					<div class="cart">
 						<p>
-							<span class="addtocart"><a href="/cart/add?id_product={{ $row->id }}"><i class="icon-shopping-cart"></i></a></span>
+							{{-- <span class="addtocart"><a href="/cart/add?id_product={{ $row->id }}"><i class="icon-shopping-cart"></i></a></span> --}}
 							<span><a href="/product/detail/{{ $row->id }}"><i class="icon-eye"></i></a></span>
-
-
 						</p>
-					</div> --}}
+					</div>
 				</div>
 				<div class="desc">
 					<h3><a href="/product/detail/{{ $row->id }}">{{ $row->name }}</a></h3>

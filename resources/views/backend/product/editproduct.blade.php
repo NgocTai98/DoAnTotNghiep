@@ -29,7 +29,7 @@
                                         <div class="form-group">
                                             <label>Danh mục</label>
                                             <select name="category" class="form-control">
-                                               {{ getCategory($category,0,'',$product->id) }}
+                                               {{ getCategory($category,0,'',$product->category_id) }}
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -45,7 +45,7 @@
                                                 {{ showErrors($errors,'product_name') }}
                                         </div>
                                         <div class="form-group">
-                                        <label>Giá sản phẩm (Giá chung)</label> <a href="/admin/product/edit/editvariant/{{$product->id}}"><span
+                                        <label>Giá sản phẩm (Giá chung)</label> <a href="/admin/product/editvariant/{{$product->id}}"><span
                                                     class="glyphicon glyphicon-chevron-right"></span>
                                                 Giá theo biến thể</a>
                                             <input type="number" name="product_price" class="form-control"
@@ -62,6 +62,18 @@
                                                 @else
                                                 <option  value="1">Còn hàng</option>
                                                 <option selected value="0">Hết hàng</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nổi bật</label>
+                                            <select required name="featured" class="form-control">
+                                                @if ($product->featured == 1)
+                                                <option selected value="1">Có</option>
+                                                <option value="0">Không</option>
+                                                @else
+                                                <option  value="1">Có</option>
+                                                <option selected value="0">Không</option>
                                                 @endif
                                                 
                                                 

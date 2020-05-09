@@ -53,7 +53,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                <a id="" class="btn btn-warning" onclick="return delVariant()" href="/admin/product/edit/delvariant/{{$variant->id}}" role="button">Xoá</a>
+                                <a id="" class="btn btn-warning" onclick="return delVariant()" href="/admin/product/delvariant/{{$variant->id}}" role="button">Xoá</a>
 
                                 </td>
 

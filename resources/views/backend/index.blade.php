@@ -8,11 +8,11 @@
 			<li><a href="#"><svg class="glyph stroked home">
 						<use xlink:href="#stroked-home"></use>
 					</svg></a></li>
-			<li class="active">Tổng quan</li>
+			<li class="active">Tổng quan </li>
 		</ol>
 	</div>
 	<!--/.row-->
-
+	
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Tổng quan</h1>
@@ -43,7 +43,7 @@
 						</svg>
 					</div>
 					<div class="col-sm-9 col-lg-7 widget-right">
-						<div class="large">52</div>
+						<div class="large"> {{ $adv }} </div>
 						<div class="text-muted">Tương tác</div>
 					</div>
 				</div>

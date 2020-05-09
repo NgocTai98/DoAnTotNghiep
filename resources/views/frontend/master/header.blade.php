@@ -5,7 +5,7 @@
                 <div class="col-xs-2">
                     <div id="colorlib-logo"><a href="/">Fashion</a></div>
                 </div>
-                <div class="col-xs-10 text-right menu-1">
+                <div class="col-xs-9 text-right menu-1">
                     <ul>
                         <li class="active"><a href="/">Trang chủ</a></li>
                         <li class="has-dropdown">
@@ -20,6 +20,9 @@
                         <li><a href="contact.html">Liên hệ</a></li>
                         <li><a href="/cart"><i class="icon-shopping-cart"></i> Giỏ hàng [{{ Cart::content()->count() }}]</a></li>
                     </ul>
+                </div>
+                <div class="col-xs-1">
+                    <a href="/customer/login">Đăng nhập</a>
                 </div>
             </div>
         </div>
